@@ -17,15 +17,23 @@
 -- This script creates the 'users' table required by the CoreUser entity.
 -- It is designed to be compatible with MySQL.
 
-CREATE TABLE IF NOT EXISTS users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20),
+CREATE TABLE IF NOT EXISTS user_account
+(
+    id
+    VARCHAR
+(
+    100
+) PRIMARY KEY COMMENT 'Unique ID of the society (UUID)',
+    email VARCHAR
+(
+    255
+) NOT NULL UNIQUE,
+    password VARCHAR
+(
+    255
+) NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     is_verified BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
-);
+    );
