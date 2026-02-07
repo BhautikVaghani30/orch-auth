@@ -1,60 +1,61 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.0'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.core.township'
-version = '0.0.1-SNAPSHOT'
+group = 'com.town'
+version = '1.0.0-SNAPSHOT'
 description = 'This service is responsible for managing user-related operations.'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenLocal()   // 👈 must be present and ABOVE mavenCentral
-	mavenCentral()
+    mavenLocal()   // 👈 must be present and ABOVE mavenCentral
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-	// 2. The specific R2DBC MySQL Driver (io.asyncer:r2dbc-mysql)
-	// This is the runtime-only dependency that connects to MySQL.
-	runtimeOnly 'io.asyncer:r2dbc-mysql'
+    // 2. The specific R2DBC MySQL Driver (io.asyncer:r2dbc-mysql)
+    // This is the runtime-only dependency that connects to MySQL.
+    runtimeOnly 'io.asyncer:r2dbc-mysql'
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
-	implementation 'com.core.township:common:1.0.3'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    implementation 'com.core.township:common:1.1.4'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	// Add the JJWT implementation dependency for runtime.
-	// This is required to resolve the UnknownClassException for DefaultJwtParserBuilder.
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    // Add the JJWT implementation dependency for runtime.
+    // This is required to resolve the UnknownClassException for DefaultJwtParserBuilder.
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
 
-	// Add a JSON processor for JWT serialization/deserialization.
-	// Jackson is a common choice in Spring Boot applications.
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    // Add a JSON processor for JWT serialization/deserialization.
+    // Jackson is a common choice in Spring Boot applications.
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
--- This script creates the 'users' table required by the CoreUser entity.
+-- This script creates the 'user_account' table required by the CoreUser entity.
 -- It is designed to be compatible with MySQL.
 
-CREATE TABLE IF NOT EXISTS users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
+CREATE SCHEMA IF NOT EXISTS `township_accounts`;
+USE `township_accounts`;
+
+CREATE TABLE IF NOT EXISTS user_account (
+    id VARCHAR(100) PRIMARY KEY COMMENT 'Unique ID of the user (UUID)',
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20),
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     is_verified BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP NOT NULL,
