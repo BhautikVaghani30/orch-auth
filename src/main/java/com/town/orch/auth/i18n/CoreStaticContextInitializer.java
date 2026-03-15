@@ -16,7 +16,7 @@
 
 package com.town.orch.auth.i18n;
 
-import com.core.township.common.i18n.CoreResourceManager;
+import com.town.common.i18n.CoreResourceManager;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;

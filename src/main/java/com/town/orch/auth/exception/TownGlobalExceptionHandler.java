@@ -16,21 +16,20 @@
 
 package com.town.orch.auth.exception;
 
+import com.town.common.enums.CoreApiStatus;
+import com.town.common.exception.model.CoreAuditData;
+import com.town.common.model.response.CoreMessage;
+import com.town.common.model.response.CoreMeta;
+import com.town.common.model.response.CoreResponse;
+import com.town.common.service.CoreAuditService;
+import com.town.common.utils.CoreJsonParserUtils;
+import com.town.orch.auth.i18n.CoreResourceManager;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import com.core.township.common.enums.CoreApiStatus;
-import com.core.township.common.exception.model.CoreAuditData;
-import com.core.township.common.model.response.CoreMessage;
-import com.core.township.common.model.response.CoreMeta;
-import com.core.township.common.model.response.CoreResponse;
-import com.core.township.common.service.CoreAuditService;
-import com.core.township.common.utils.CoreJsonParserUtils;
-import com.town.orch.auth.i18n.CoreResourceManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,12 +66,11 @@ public class TownGlobalExceptionHandler {
   }
 
   /**
-   * Handles custom {@link com.core.township.common.exception.CoreServiceException} instances thrown
-   * within the application. It creates a structured {@link CoreResponse} with details from the
-   * exception and performs audit logging if the exception contains audit data and is configured for
-   * auditing.
+   * Handles custom {@link CoreServiceException} instances thrown within the application. It creates
+   * a structured {@link CoreResponse} with details from the exception and performs audit logging if
+   * the exception contains audit data and is configured for auditing.
    *
-   * @param ex The {@link com.core.township.common.exception.CoreServiceException} that was thrown.
+   * @param ex The {@link CoreServiceException} that was thrown.
    * @return A {@link ResponseEntity} containing the standardized error response.
    */
   @ExceptionHandler(CoreServiceException.class)
@@ -166,9 +164,9 @@ public class TownGlobalExceptionHandler {
   }
 
   /**
-   * Performs audit logging for a {@link com.core.township.common.exception.CoreServiceException} if
-   * applicable. Auditing is triggered if the exception contains {@link CoreAuditData} and the error
-   * code corresponds to a message key configured for auditing in the {@link CoreAuditService}.
+   * Performs audit logging for a {@link CoreServiceException} if applicable. Auditing is triggered
+   * if the exception contains {@link CoreAuditData} and the error code corresponds to a message key
+   * configured for auditing in the {@link CoreAuditService}.
    *
    * @param ex The exception to audit.
    */
@@ -225,7 +223,6 @@ public class TownGlobalExceptionHandler {
         "TownGlobalExceptionHandler :: handleWebExchangeBindException : Validation failed. Reason: {}",
         ex.getMessage());
     List<CoreMessage> validationMessages =
-        (List)
             ex.getBindingResult().getFieldErrors().stream()
                 .map(
                     (fieldError) ->

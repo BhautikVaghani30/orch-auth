@@ -6,9 +6,8 @@
 
 package com.town.orch.auth.intorceptore;
 
-import com.core.township.common.config.CoreLocalDevelopmentConfig;
-import com.core.township.common.config.filter.CoreHeaderFeaturesOutgoingExchange;
-import com.core.township.common.webclient.CoreWebClientBuilderService;
+import com.town.common.config.CoreLocalDevelopmentConfig;
+import com.town.common.webclient.CoreWebClientBuilderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,10 +35,6 @@ public class LoggingInterceptor {
                 coreWebClientBuilderService
                         .createCoreWebClient(clientName)
                         .baseUrl(coreCartBaseUrl)
-
-                        // Forward HeaderFeatures on Core Requests
-                        .filter(new CoreHeaderFeaturesOutgoingExchange())
-
                         .defaultHeader(HttpHeaders.CONTENT_TYPE, contentType)
                         .defaultHeader(HttpHeaders.ACCEPT, accept)
                         .defaultHeader("X-apikey", "G5qMQZioRNVqPR7VffudCzGFPWVkHK9E")
@@ -58,10 +53,6 @@ public class LoggingInterceptor {
                 coreWebClientBuilderService
                         .createOrchWebClient(clientName)
                         .baseUrl(orchProfileBaseUrl)
-
-                        // Forward HeaderFeatures on Orch Requests
-                        .filter(new CoreHeaderFeaturesOutgoingExchange())
-
                         .defaultHeader(HttpHeaders.CONTENT_TYPE, contentType)
                         .defaultHeader(HttpHeaders.ACCEPT, accept)
                         .defaultHeader("X-apikey", "G5qMQZioRNVqPR7VffudCzGFPWVkHK9E")

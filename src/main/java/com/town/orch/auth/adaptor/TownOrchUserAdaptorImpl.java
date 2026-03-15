@@ -1,25 +1,24 @@
 package com.town.orch.auth.adaptor;
 
-import com.core.township.common.model.response.CoreResponse;
-import com.core.township.common.utils.CoreJsonParserUtils;
+import static com.town.orch.auth.constants.TownErrorMessages.TECHNICAL_ERROR;
+
+import com.town.common.model.response.CoreResponse;
+import com.town.common.utils.CoreJsonParserUtils;
 import com.town.orch.auth.constants.TownApiConstants;
 import com.town.orch.auth.dto.TownUserProfileRequestDto;
 import com.town.orch.auth.dto.TownUserProfileResponseDto;
 import com.town.orch.auth.exception.CoreServiceException;
 import com.town.orch.auth.intorceptore.LoggingInterceptor;
 import jakarta.annotation.PostConstruct;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
-
-import static com.town.orch.auth.constants.TownErrorMessages.TECHNICAL_ERROR;
 
 @Component
 @Slf4j
@@ -33,7 +32,7 @@ public class TownOrchUserAdaptorImpl implements TownOrchUserAdaptor {
 
   private final LoggingInterceptor loggingInterceptor;
 
-  @Value("town.user.baseUrl")
+  @Value("${town.user.baseUrl}")
   private String townUserBaseUrl;
 
   @PostConstruct
@@ -73,19 +72,19 @@ public class TownOrchUserAdaptorImpl implements TownOrchUserAdaptor {
                     CoreJsonParserUtils.getJsonFromObject(result));
               }
             })
-        .doOnError(
+        .onErrorMap(
             ex -> {
               if (ex instanceof CoreServiceException) {
                 log.error(
                     "TownOrchUserAdaptor : createUserProfile :: A known service exception occurred during society registration: {}",
                     ((CoreServiceException) ex).getError().getCode(),
                     ex);
-                throw (CoreServiceException) ex;
+                return ex;
               }
               log.error(
                   "TownOrchUserAdaptor : createUserProfile :: An unexpected error occurred while calling the society-processor service.",
                   ex);
-              throw new CoreServiceException(TECHNICAL_ERROR);
+              return new CoreServiceException(TECHNICAL_ERROR);
             });
   }
 }

@@ -16,7 +16,7 @@
 
 package com.town.orch.auth.service;
 
-import com.core.township.common.utils.CoreJsonParserUtils;
+import com.town.common.utils.CoreJsonParserUtils;
 import com.town.orch.auth.adaptor.TownOrchUserAdaptor;
 import com.town.orch.auth.constants.TownErrorMessages;
 import com.town.orch.auth.dto.TownUserDTO;
@@ -135,7 +135,8 @@ public class TownUserServiceImpl implements TownAuthService {
         .doOnError(
             error ->
                 log.error(
-                    "TownUserServiceImpl :: createUser : Error occurred while creating user: ",
+                    "TownUserServiceImpl :: createUser : Error occurred while creating user: {}",
+                    error.getMessage(),
                     error));
   }
 }

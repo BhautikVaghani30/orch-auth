@@ -16,11 +16,9 @@
 
 package com.town.orch.auth.config;
 
-import com.core.township.common.service.CoreAuditService;
+import com.town.common.service.CoreAuditService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Central configuration class for common beans used throughout the user service.

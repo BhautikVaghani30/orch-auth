@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
 @SpringBootApplication(
-    scanBasePackages = {"com.core.township.common", "com.town.orch.auth"},
+    scanBasePackages = {"com.town.common", "com.town.orch.auth"},
     exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
 public class UserApplication {
 
