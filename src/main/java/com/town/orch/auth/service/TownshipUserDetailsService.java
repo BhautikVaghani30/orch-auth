@@ -16,26 +16,22 @@
 
 package com.town.orch.auth.service;
 
-import com.core.township.common.utils.CoreJsonParserUtils;
+import com.town.common.utils.CoreJsonParserUtils;
 import com.town.orch.auth.config.security.TownshipAuthUserDetails;
 import com.town.orch.auth.constants.TownErrorMessages;
 import com.town.orch.auth.entities.TownUser;
 import com.town.orch.auth.exception.CoreServiceException;
 import com.town.orch.auth.repository.TownAuthRepository;
-
+import java.util.Collections;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import reactor.core.publisher.Mono;
-
-import java.util.Collections;
-import java.util.Objects;
 
 /**
  * Service responsible for loading user-specific data during authentication. It implements {@link

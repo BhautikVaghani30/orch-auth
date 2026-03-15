@@ -16,7 +16,7 @@
 
 package com.town.orch.auth.i18n;
 
-import com.core.township.common.model.response.CoreMessage;
+import com.town.common.model.response.CoreMessage;
 import java.util.regex.Pattern;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

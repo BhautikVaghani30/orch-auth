@@ -16,12 +16,12 @@
 
 package com.town.orch.auth.model.api;
 
+import com.town.common.model.response.CoreResponse;
 import com.town.orch.auth.constants.TownApiConstants;
 import com.town.orch.auth.constants.TownAuthSwaggerPathConstant;
 import com.town.orch.auth.dto.TownUserDTO;
 import com.town.orch.auth.dto.TownUserProfileResponseDto;
 import com.town.orch.auth.entities.TownUser;
-import com.core.township.common.model.response.CoreResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

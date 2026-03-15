@@ -16,10 +16,10 @@
 
 package com.town.orch.auth.exception.model;
 
-import com.core.township.common.utils.CoreJsonParserUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.town.common.utils.CoreJsonParserUtils;
 import lombok.Getter;
 import lombok.Setter;
 

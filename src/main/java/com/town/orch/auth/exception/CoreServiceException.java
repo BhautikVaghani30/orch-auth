@@ -16,10 +16,10 @@
 
 package com.town.orch.auth.exception;
 
-import com.core.township.common.exception.model.CoreAuditData;
-import com.core.township.common.exception.model.CoreServiceError;
-import com.core.township.common.i18n.CoreResourceManager;
-import com.core.township.common.utils.CoreJsonParserUtils;
+import com.town.common.exception.model.CoreAuditData;
+import com.town.common.exception.model.CoreServiceError;
+import com.town.common.i18n.CoreResourceManager;
+import com.town.common.utils.CoreJsonParserUtils;
 import java.io.Serial;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

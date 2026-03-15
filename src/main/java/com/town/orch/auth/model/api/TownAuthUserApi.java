@@ -16,9 +16,9 @@
 
 package com.town.orch.auth.model.api;
 
-import com.core.township.common.model.response.CoreResponse;
-import com.town.orch.auth.dto.LoginRequest;
+import com.town.common.model.response.CoreResponse;
 import com.town.orch.auth.constants.TownApiConstants;
+import com.town.orch.auth.dto.LoginRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;

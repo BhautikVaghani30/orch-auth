@@ -16,28 +16,25 @@
 
 package com.town.orch.auth.controller;
 
-import com.core.township.common.enums.CoreApiStatus;
-import com.core.township.common.exception.model.CoreServiceError;
-import com.core.township.common.model.response.CoreMessage;
-import com.core.township.common.model.response.CoreMeta;
-import com.core.township.common.model.response.CoreResponse;
-import com.core.township.common.utils.CoreJsonParserUtils;
+import com.town.common.enums.CoreApiStatus;
+import com.town.common.exception.model.CoreServiceError;
+import com.town.common.model.response.CoreMessage;
+import com.town.common.model.response.CoreMeta;
+import com.town.common.model.response.CoreResponse;
+import com.town.common.utils.CoreJsonParserUtils;
 import com.town.orch.auth.config.security.TownAuthSecurityConstants;
 import com.town.orch.auth.constants.TownErrorMessages;
 import com.town.orch.auth.dto.LoginRequest;
 import com.town.orch.auth.exception.CoreServiceException;
 import com.town.orch.auth.model.api.TownAuthUserApi;
 import com.town.orch.auth.service.TownAuthService;
-
 import jakarta.validation.Valid;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -46,7 +43,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
-
 import reactor.core.publisher.Mono;
 
 /**

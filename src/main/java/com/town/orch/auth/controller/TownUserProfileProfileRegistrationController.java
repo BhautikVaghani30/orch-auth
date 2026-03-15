@@ -16,24 +16,23 @@
 
 package com.town.orch.auth.controller;
 
+import com.town.common.enums.CoreApiStatus;
+import com.town.common.model.response.CoreMessage;
+import com.town.common.model.response.CoreMeta;
+import com.town.common.model.response.CoreResponse;
+import com.town.common.utils.CoreJsonParserUtils;
 import com.town.orch.auth.constants.TownErrorMessages;
+import com.town.orch.auth.dto.TownUserDTO;
 import com.town.orch.auth.dto.TownUserProfileResponseDto;
 import com.town.orch.auth.entities.TownUser;
 import com.town.orch.auth.model.api.TownUserProfileRegistrationAPI;
-import com.town.orch.auth.dto.TownUserDTO;
 import com.town.orch.auth.model.service.TownAuthService;
-import com.core.township.common.enums.CoreApiStatus;
-import com.core.township.common.model.response.CoreMessage;
-import com.core.township.common.model.response.CoreMeta;
-import com.core.township.common.model.response.CoreResponse;
-import com.core.township.common.utils.CoreJsonParserUtils;
+import java.util.Collections;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-
-import java.util.Collections;
-import java.util.Optional;
 
 /**
  * The TownUserController class is a REST controller that handles user-related HTTP requests. It
@@ -44,7 +43,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-public class TownUserProfileProfileRegistrationController implements TownUserProfileRegistrationAPI {
+public class TownUserProfileProfileRegistrationController
+    implements TownUserProfileRegistrationAPI {
 
   /**
    * Service for handling user-related business logic. It is injected via constructor by Lombok's
@@ -57,8 +57,7 @@ public class TownUserProfileProfileRegistrationController implements TownUserPro
    * handles the request asynchronously. It logs the request, calls the service to create the user,
    * and builds a successful response.
    *
-   * @param user The {@link TownUserDTO} object containing the user's information. It is wrapped in
-   *     an {@link Optional} to prevent NullPointerExceptions.
+   * @param user The {@link TownUserDTO} object containing the user's information.
    * @return A {@link Mono} emitting a {@link CoreResponse} with the created {@link TownUser}.
    */
   @Override
@@ -70,20 +69,20 @@ public class TownUserProfileProfileRegistrationController implements TownUserPro
                     u -> {
                       if (log.isDebugEnabled()) {
                         log.debug(
-                            "TownUserController :: createUser :: Request received to create user: {}",
+                            "TownUserProfileProfileRegistrationController :: createUser :: Request received to create user: {}",
                             CoreJsonParserUtils.getJsonFromObject(u));
                       }
                     },
                     () ->
                         log.debug(
-                            "TownUserController :: createUser :: Received empty request body to create user")))
+                            "TownUserProfileProfileRegistrationController :: createUser :: Received empty request body to create user")))
         .flatMap(userOpt -> userOpt.map(townUserService::createUserProfile).orElse(Mono.empty()))
         .map(this::buildUserCreationSuccessfullyResponse)
         .doOnSuccess(
             response -> {
               if (log.isDebugEnabled()) {
                 log.debug(
-                    "TownUserController :: createUser :: User successfully created: {}",
+                    "TownUserProfileProfileRegistrationController :: createUser :: User successfully created: {}",
                     CoreJsonParserUtils.getJsonFromObject(response.getData()));
               }
             });
